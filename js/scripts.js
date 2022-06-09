@@ -33,23 +33,50 @@ let pokMewtwo = {
   abilities: ['Pressure', 'Psychic beam']
 };
 
-let pokemonList = [
-  pokCharizard,
-  pokButterfree,
-  pokPikachu,
-  pokGengar,
-  pokMewtwo
-];
+let pokScyther = {
+  name: 'Scyther',
+  type: ['Bug', 'Flying'],
+  height: 4,
+  abilities: ['Swarm', 'Slash']
+};
 
-for (i = 0; i <= 4; i++) {
-  document.write(pokemonList[i].name);
-  document.write(' (' + 'height: ' + pokemonList[i].height + ') ');
-  if (pokemonList[i].height > 5) {
+let pokemonRepository = (function () { //IIFE
+    let pokemonList = [
+    pokCharizard,
+    pokButterfree,
+    pokPikachu,
+    pokGengar,
+    pokMewtwo
+  ];
+
+  function getAll () {
+    return pokemonList;
+  }
+
+  function add (pokemon) {
+    pokemonList.push(pokemon);
+  }
+
+  return {
+    getAll: getAll,
+    add: add
+  }
+
+})()
+
+
+function loopFunction(pokemons) {
+  document.write(pokemons.name);
+  document.write(' (' + 'height: ' + pokemons.height + ') ');
+  if (pokemons.height > 5) {
     document.write(' - WOW,that is a big pokemon!');
-  }else if (pokemonList[i].height <= 5 && pokemonList[i].height >= 3) {
+  }else if (pokemons.height <= 5 && pokemons.height >= 3) {
     document.write(' - An average pokemon');
   }else {
     document.write(' - Small pokemon');
   }
   document.write('<br>');
 }
+
+pokemonRepository.add(pokScyther);
+pokemonRepository.getAll().forEach(loopFunction);
