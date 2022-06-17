@@ -1,54 +1,7 @@
-let pokCharizard = {
-  name: "Charizard",
-  type: ["Fire", "Flying"],
-  height: 6,
-  abilities: ["Blaze", "Flamethrower"],
-};
-
-let pokButterfree = {
-  name: "Butterfree",
-  type: ["Bug", "Flying"],
-  height: 3,
-  abilities: ["Confuse", "Sleep Powder"],
-};
-
-let pokPikachu = {
-  name: "Pikachu",
-  type: ["Electric"],
-  height: 1,
-  abilities: ["Quickattack", "Thunderbolt"],
-};
-
-let pokGengar = {
-  name: "Gengar",
-  type: ["Ghost", "Poison"],
-  height: 4.5,
-  abilities: ["Cursed Body", "Nightmare"],
-};
-
-let pokMewtwo = {
-  name: "Mewtwo",
-  type: ["Psychic"],
-  height: 5,
-  abilities: ["Pressure", "Psychic beam"],
-};
-
-let pokScyther = {
-  name: "Scyther",
-  type: ["Bug", "Flying"],
-  height: 4,
-  abilities: ["Swarm", "Slash"],
-};
-
 let pokemonRepository = (function () {
   //IIFE
-  let pokemonList = [
-    pokCharizard,
-    pokButterfree,
-    pokPikachu,
-    pokGengar,
-    pokMewtwo,
-  ];
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
   function getAll() {
     return pokemonList;
@@ -64,10 +17,7 @@ let pokemonRepository = (function () {
     The exclamation marks means not, so in our i, we are saying, if the name is not in the keys array, or.. **/
     const keys = Object.keys(pokemon);
     if (
-      !keys.includes("name") ||
-      !keys.includes("type") ||
-      !keys.includes("height") ||
-      !keys.includes("abilities")
+      !keys.includes("name")
     ) {
       return "The pokemon object is missing some required fields";
     }
@@ -81,14 +31,12 @@ let pokemonRepository = (function () {
   }
 
   function addListItem(pokemon) {
+    console.log(pokemon)
     let listItems = document.querySelector('.pokemon-list');
     let listItem = document.createElement('li');
     let button = document.createElement('button');
     button.innerText = pokemon.name;
     button.classList.add('pkmn-button');
-
-    //This is another way to add even listener to button,outside of function
-    //addEventListenerToBtn(button, pokemon);
 
     button.addEventListener('click', function () {
       showDetails(pokemon);
@@ -99,25 +47,53 @@ let pokemonRepository = (function () {
     };
 
   function showDetails(pokemon) {
-    console.log(pokemon.name);
+  loadDetails(pokemon).then(function () {
+    console.log(pokemon);
+  });
   }
 
-  /**function addEventListenerToBtn(button, pokemon) {
-    button.addEventListener('click', function () {
-      showDetails(pokemon);
-    });**/
+
+  function loadList() {
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    })
+  }
+
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function (e) {
+      console.error(e);
+    });
+  }
 
   return {
     getAll: getAll,
     add: add,
-    findPokemonByName,
-    addListItem: addListItem
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails,
+    showDetails: showDetails
   };
 })();
 
-function loopFunction(pokemon) {
-  pokemonRepository.addListItem(pokemon);
-}
-
-pokemonRepository.add(pokScyther);
-pokemonRepository.getAll().forEach(loopFunction);
+pokemonRepository.loadList().then(function() {
+  pokemonRepository.getAll().forEach(function(pokemon){
+    pokemonRepository.addListItem(pokemon);
+  });
+});
