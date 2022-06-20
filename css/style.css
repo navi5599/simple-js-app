@@ -127,3 +127,19 @@ h2 {
 .modal p {
   margin-bottom: 0;
 }
+
+/* media query */
+
+@media all and (max-width: 450px) {
+  .modal h1 {
+    font-size: 22px;
+  }
+
+  .pokemon-list {
+    width: 90%;
+  }
+
+  .modal {
+    width: 80%;
+  }
+}
