@@ -2,105 +2,42 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
-h2 {
+h4 {
   text-transform: uppercase;
   letter-spacing: 1px;
   text-align: center;
 }
 
+.navbar-brand {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.logo {
+  width: 85px;
+}
+
 .pokemon-list {
-  list-style: none;
   text-align: center;
   width: 250px;
   margin: auto;
-  border: 2.5px solid #FF4742;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-  box-sizing: border-box;
   padding: 12px 14px;
   overflow: auto;
   height: 500px;
-
 }
 
-
-.pkmn-button {
-  background: #FF4742;
-  border: 1px solid #FF4742;
-  border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
-  box-sizing: border-box;
-  color: #FFFFFF;
-  cursor: pointer;
-  display: inline-block;
-  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
-  font-size: 16px;
-  font-weight: 800;
-  line-height: 16px;
-  min-height: 40px;
-  outline: 0;
-  padding: 12px 14px;
-  text-align: center;
-  text-rendering: geometricprecision;
-  text-transform: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  vertical-align: middle;
+ .pokemon-list .btn {
   width: 100%;
-  margin-bottom: 10px;
-}
-
-.pkmn-button:hover,
-.pkmn-button:active {
-  background-color: initial;
-  background-position: 0 0;
-  color: #FF4742;
-}
-
-.pkmn-button:active {
-  opacity: .5;
 }
 
 .svg-class {
   text-align: center;
   margin-top: 10px;
-}
-
-/* modal styling */
-
-#modal-container {
-  display: none;
-}
-
-#modal-container.is-visible {
-  position: fixed;
-  padding: 20px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height:100%;
-  background: rgba(0, 0, 0, 0.5);
-  overflow: auto;
-  display: grid;
-  text-align: center;
-}
-
-.modal {
-  margin: auto;
-  display: inline-block;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 15px;
-  width: 255px;
-  height: 420px;
-  max-width: 700px;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: #FF4742 2px 4px 30px 8px ;
 }
 
 .pkmn-img {
@@ -110,28 +47,24 @@ h2 {
   margin: auto;
 }
 
-.modal-close {
-  -webkit-appearance: none;
-  background: none;
-  border: none;
-  color: #777;
-  text-decoration: underline;
-  display: block;
-}
-
-.modal h1 {
+.modal h2 {
   margin-top: 20px;
   text-transform: uppercase;
 }
 
-.modal p {
-  margin-bottom: 0;
+
+.modal-footer {
+  display: inline-block;
+}
+
+.modal-footer p {
+  text-align: center;
 }
 
 /* media query */
 
 @media all and (max-width: 450px) {
-  .modal h1 {
+  .modal h4 {
     font-size: 22px;
   }
 
