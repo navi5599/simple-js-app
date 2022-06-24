@@ -36,10 +36,15 @@ let pokemonRepository = (function () {
     let listItem = document.createElement('li');
     let button = document.createElement('button');
     listItem.classList.add('list-group-item');
+    listItem.classList.add('text-center');
     button.innerText = pokemon.name;
+    button.classList.add('text-capitalize');
     button.classList.add('btn');
     button.classList.add('btn-outline-danger');
-    
+    button.classList.add('col-sm');
+    button.classList.add('col-lg-4');
+
+
     $(button).attr('data-target','#modalContainer');
     $(button).attr('data-toggle','modal');
 
@@ -98,16 +103,22 @@ let pokemonRepository = (function () {
     modalFooter.text('');
    
     let pokemonImg = document.createElement('img');
-    pokemonImg.classList.add('pkmn-img');
+    pokemonImg.classList.add('mw-100');
+    pokemonImg.classList.add('img-fluid');
     pokemonImg.src = pokemon.imageUrl;
 
     let titleElement = document.createElement('h2');
+    titleElement.classList.add('text-uppercase');
     titleElement.innerText = pokemon.name;
 
     let contentElement = document.createElement('p');
+    contentElement.classList.add('col');
+    contentElement.classList.add('text-center');
     contentElement.innerText = 'Height: ' + pokemon.height;
 
     let contentElement2 = document.createElement('p');
+    contentElement2.classList.add('col');
+    contentElement2.classList.add('text-center');
     contentElement2.innerText = 'Weight: ' + pokemon.weight;
 
     modalBody.append(pokemonImg);
