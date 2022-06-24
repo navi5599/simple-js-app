@@ -5,22 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto+Condensed&family=Roboto:wght@100;300&display=swap" rel="stylesheet">
   <title>Pokedex JS App</title>
 </head>
-<body>
+<body style="height: 100vh">
 
-  <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href=""><img class="logo img-fluid" src="img/pkmn-logo.png" alt="pokemon-logo"></a>
+  <nav class="navbar navbar-light bg-danger">
+    <a class="navbar-brand" href=""><img class="logo img-fluid" src="img/pkmn-logo.png" width="85" height="85" alt="pokemon-logo"></a>
     <form class="form-inline">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-danger my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
     </form>
   </nav>
 
-  <h4>-Pokédex-</h4>
-  <ul class="list-group pokemon-list"></ul>
+  <h4 class="text-center">-Pokédex-</h4>
+  <ul class="list-group pokemon-list h-75 w-50 mx-auto overflow-auto"></ul>
+  
 
   <div class="modal fade" id="modalContainer" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -31,13 +31,13 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body"></div>
+        <div class="modal-body text-center"></div>
         <div class="modal-footer"></div>
       </div>
     </div>
   </div>
 
-  <div class="svg-class">
+  <div class="svg-class text-center">
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="35px" height="35px" viewBox="0 0 14 13" version="1.1">
     <g id="surface1">
     <path style=" stroke:none;fill-rule:nonzero;fill:rgb(0.392157%,0.392157%,0.392157%);fill-opacity:1;" d="M 0 6.492188 C 0.0078125 2.890625 3.148438 -0.015625 7.019531 0 C 10.894531 0.015625 14.007812 2.921875 14 6.511719 C 13.992188 10.105469 10.851562 13.011719 6.992188 13 C 3.117188 12.984375 -0.0078125 10.078125 0 6.492188 Z M 0 6.492188 "/>
@@ -50,7 +50,6 @@
   </div>
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="js/promise-polyfill.js"></script>
