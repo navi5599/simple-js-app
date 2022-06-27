@@ -38,6 +38,7 @@ let pokemonRepository = (function () {
     listItem.classList.add('list-group-item');
     listItem.classList.add('text-center');
     button.innerText = pokemon.name;
+    button.classList.add('pokemon-name');
     button.classList.add('text-capitalize');
     button.classList.add('btn');
     button.classList.add('btn-outline-danger');
@@ -86,7 +87,7 @@ let pokemonRepository = (function () {
     }).then(function (details) {
       item.imageUrl = details.sprites.other.dream_world.front_default;
       item.height = details.height;
-      item.types = details.types;
+      item.types = details.types[0].type.name;
       item.weight = details.weight;
     }).catch(function (e) {
       console.error(e);
@@ -121,10 +122,17 @@ let pokemonRepository = (function () {
     contentElement2.classList.add('text-center');
     contentElement2.innerText = 'Weight: ' + pokemon.weight;
 
+    let contentElement3 = document.createElement('p');
+    contentElement3.classList.add('col');
+    contentElement3.classList.add('text-center');
+    contentElement3.innerText = 'Type: ' + pokemon.types;
+
+
     modalBody.append(pokemonImg);
     modalTitle.append(titleElement);
     modalFooter.append(contentElement);
     modalFooter.append(contentElement2);
+    modalFooter.append(contentElement3);
   }
 
   return {
@@ -142,3 +150,21 @@ pokemonRepository.loadList().then(function() {
     pokemonRepository.addListItem(pokemon);
   });
 });
+
+function searchFunction(event) {
+  let search = document.getElementById('search');
+  let pokemonNames = document.getElementsByClassName('pokemon-name');
+  let { value } = event.target;
+  let searchQuery = value.toLowerCase();
+  for (let pokemonName of pokemonNames) {
+    let name = pokemonName.textContent.toLowerCase();
+    //show if searchQuery is contained in name of pokemon within button
+    if (name.includes(searchQuery)) {
+      pokemonName.closest('li').style.display = 'inline-block';
+    } else {
+      pokemonName.closest('li').style.display = 'none';
+    }
+  }
+}
+
+search.addEventListener('keyup', searchFunction);
