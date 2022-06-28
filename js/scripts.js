@@ -151,6 +151,7 @@ pokemonRepository.loadList().then(function() {
   });
 });
 
+//search function
 function searchFunction(event) {
   let search = document.getElementById('search');
   let pokemonNames = document.getElementsByClassName('pokemon-name');
@@ -158,7 +159,7 @@ function searchFunction(event) {
   let searchQuery = value.toLowerCase();
   for (let pokemonName of pokemonNames) {
     let name = pokemonName.textContent.toLowerCase();
-    //show if searchQuery is contained in name of pokemon within button
+    //display pokemon name if it contains value inside of search
     if (name.includes(searchQuery)) {
       pokemonName.closest('li').style.display = 'inline-block';
     } else {
