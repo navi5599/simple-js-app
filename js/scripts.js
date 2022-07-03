@@ -1,5 +1,4 @@
 let pokemonRepository = (function () {
-  //IIFE
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   //let modalContainer = document.querySelector('#modal-container');
@@ -10,17 +9,17 @@ let pokemonRepository = (function () {
 
   function add(pokemon) {
     // typeof {} === "object" , try that in the console
-    if (typeof pokemon !== "object") {
-      return "A pokemon object is required";
+    if (typeof pokemon !== 'object') {
+      return 'A pokemon object is required';
     }
     /** this gets the fields in the pokemon oject and places them in an array
     includes is a method on arrays that searches for the existence of certain items in an array
     The exclamation marks means not, so in our i, we are saying, if the name is not in the keys array, or.. **/
     const keys = Object.keys(pokemon);
     if (
-      !keys.includes("name")
+      !keys.includes('name')
     ) {
-      return "The pokemon object is missing some required fields";
+      return 'The pokemon object is missing some required fields';
     }
     pokemonList.push(pokemon);
   }
@@ -153,7 +152,6 @@ pokemonRepository.loadList().then(function() {
 
 //search function
 function searchFunction(event) {
-  let search = document.getElementById('search');
   let pokemonNames = document.getElementsByClassName('pokemon-name');
   let { value } = event.target;
   let searchQuery = value.toLowerCase();
@@ -168,4 +166,5 @@ function searchFunction(event) {
   }
 }
 
+let search = document.getElementById('search');
 search.addEventListener('keyup', searchFunction);
